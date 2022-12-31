@@ -16,8 +16,9 @@
     <name>HotSearch-Top</name>
     <description>HotSearch-Top</description>
 
+    <!-- 子项目 -->
     <modules>
-        <module>HotSearch-Top-Web</module>
+        <module>HotSearch-Top-Web-8080</module>
     </modules>
 
     <properties>
