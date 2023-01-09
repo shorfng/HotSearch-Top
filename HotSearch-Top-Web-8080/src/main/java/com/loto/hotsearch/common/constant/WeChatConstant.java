@@ -1,14 +1,14 @@
 package com.loto.hotsearch.common.constant;
 
 /**
- * PageName：WeiXinConstant.java<p>
+ * PageName：WeChatConstant.java<p>
  * Date：2023-01-09 18:56<p>
  * Function：微信相关的常量
  *
  * @author 蓝田_Loto
  */
 
-public class WeiXinConstant {
+public class WeChatConstant {
     /**
      * 微信接口的前缀
      */
