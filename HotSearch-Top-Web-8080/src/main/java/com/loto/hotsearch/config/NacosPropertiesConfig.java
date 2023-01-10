@@ -34,4 +34,11 @@ public class NacosPropertiesConfig {
      */
     @Value("${weChat.secret}")
     private String secret;
+
+    /**
+     * 微信接口 - 第三方用户唯一凭证密钥，即appsecret
+     */
+    @Value("${spring.redis.host}" + ":" + "${spring.redis.port}")
+    private String redisAddress;
+
 }
