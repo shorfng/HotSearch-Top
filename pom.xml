@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
-    <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
@@ -9,21 +8,22 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
 
-    <groupId>com.loto</groupId>
+    <groupId>com.loto.hotsearch</groupId>
     <artifactId>HotSearch-Top</artifactId>
+    <modelVersion>4.0.0</modelVersion>
     <version>1.0.0-SNAPSHOT</version>
     <packaging>pom</packaging>
-    <name>HotSearch-Top</name>
     <description>HotSearch-Top</description>
 
     <!-- 子项目 -->
     <modules>
-        <module>hotsearch-api</module>
+        <module>hotsearch-dubbo-api</module>
         <module>hotsearch-common</module>
         <module>hotsearch-gateway</module>
         <module>hotsearch-log</module>
         <module>hotsearch-service</module>
         <module>hotsearch-web</module>
+        <module>hotsearch-persistence</module>
     </modules>
 
     <properties>
@@ -34,130 +34,37 @@
 
         <!-- 其他依赖包的统一版本号 -->
         <spring-cloud-alibaba-dependencies.version>2.2.6.RELEASE</spring-cloud-alibaba-dependencies.version>
+        <lombok.version>1.18.24</lombok.version>
+
         <mybatis-plus-boot-starter.version>3.4.3.2</mybatis-plus-boot-starter.version>
+        <mybatis-plus-generator.version>3.4.0</mybatis-plus-generator.version>
+        <freemarker.version>2.3.30</freemarker.version>
+        <velocity-engine-core.version>2.2</velocity-engine-core.version>
+
         <redisson.version>3.8.2</redisson.version>
         <fastjson.version>2.0.22</fastjson.version>
         <commons-lang3.version>3.12.0</commons-lang3.version>
         <commons-collections.verison>3.2.2</commons-collections.verison>
         <commons-beanutils.verison>1.9.4</commons-beanutils.verison>
+        <httpclient.verison>4.5.14</httpclient.verison>
+
         <hutool-all.version>5.8.11</hutool-all.version>
+
+        <hotsearch.version>1.0.0-SNAPSHOT</hotsearch.version>
     </properties>
 
     <dependencies>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-web</artifactId>
-        </dependency>
-
         <!-- Actuator可以帮助你监控和管理Spring Boot应⽤-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-actuator</artifactId>
         </dependency>
 
-        <!-- Nacos 配置中心 -->
-        <dependency>
-            <groupId>com.alibaba.cloud</groupId>
-            <artifactId>spring-cloud-starter-alibaba-nacos-config</artifactId>
-        </dependency>
-
-        <!-- Nacos 服务发现 -->
-        <dependency>
-            <groupId>com.alibaba.cloud</groupId>
-            <artifactId>spring-cloud-starter-alibaba-nacos-discovery</artifactId>
-        </dependency>
-
         <!-- Lombok -->
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
-        </dependency>
-
-        <!-- MySQL -->
-        <dependency>
-            <groupId>mysql</groupId>
-            <artifactId>mysql-connector-java</artifactId>
-            <scope>runtime</scope>
-        </dependency>
-
-        <!-- MyBatis Plus -->
-        <dependency>
-            <groupId>com.baomidou</groupId>
-            <artifactId>mybatis-plus-boot-starter</artifactId>
-            <version>${mybatis-plus-boot-starter.version}</version>
-        </dependency>
-
-        <!--mybatis-plus-generator 逆向工程 -->
-        <dependency>
-            <groupId>com.baomidou</groupId>
-            <artifactId>mybatis-plus-generator</artifactId>
-            <version>3.4.0</version>
-            <exclusions>
-                <exclusion>
-                    <artifactId>mybatis-plus-extension</artifactId>
-                    <groupId>com.baomidou</groupId>
-                </exclusion>
-            </exclusions>
-        </dependency>
-        <dependency>
-            <groupId>org.freemarker</groupId>
-            <artifactId>freemarker</artifactId>
-            <version>2.3.30</version>
-        </dependency>
-        <!-- 默认模版 -->
-        <dependency>
-            <groupId>org.apache.velocity</groupId>
-            <artifactId>velocity-engine-core</artifactId>
-            <version>2.2</version>
-        </dependency>
-
-        <!--Redis-->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-data-redis</artifactId>
-        </dependency>
-
-        <!-- Redisson（Redis 布隆过滤器使用） -->
-        <dependency>
-            <groupId>org.redisson</groupId>
-            <artifactId>redisson</artifactId>
-            <version>${redisson.version}</version>
-        </dependency>
-
-        <!-- json -->
-        <dependency>
-            <groupId>com.alibaba</groupId>
-            <artifactId>fastjson</artifactId>
-            <version>${fastjson.version}</version>
-        </dependency>
-
-        <!-- commons 相关 -->
-        <dependency>
-            <groupId>org.apache.commons</groupId>
-            <artifactId>commons-lang3</artifactId>
-            <version>${commons-lang3.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>commons-collections</groupId>
-            <artifactId>commons-collections</artifactId>
-            <version>${commons-collections.verison}</version>
-        </dependency>
-        <dependency>
-            <groupId>commons-beanutils</groupId>
-            <artifactId>commons-beanutils</artifactId>
-            <version>${commons-beanutils.verison}</version>
-        </dependency>
-
-        <!-- hutool -->
-        <dependency>
-            <groupId>cn.hutool</groupId>
-            <artifactId>hutool-all</artifactId>
-            <version>${hutool-all.version}</version>
-        </dependency>
-
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-thymeleaf</artifactId>
+            <version>${lombok.version}</version>
         </dependency>
     </dependencies>
 
@@ -171,11 +78,123 @@
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
+
+
+            <!-- MySQL -->
+            <!--            <dependency>-->
+            <!--                <groupId>mysql</groupId>-->
+            <!--                <artifactId>mysql-connector-java</artifactId>-->
+            <!--                <scope>runtime</scope>-->
+            <!--            </dependency>-->
+
+            <!-- MyBatis Plus -->
+            <dependency>
+                <groupId>com.baomidou</groupId>
+                <artifactId>mybatis-plus-boot-starter</artifactId>
+                <version>${mybatis-plus-boot-starter.version}</version>
+            </dependency>
+
+            <!-- mybatis-plus-generator 逆向工程 -->
+            <dependency>
+                <groupId>com.baomidou</groupId>
+                <artifactId>mybatis-plus-generator</artifactId>
+                <version>${mybatis-plus-generator.version}</version>
+                <exclusions>
+                    <exclusion>
+                        <artifactId>mybatis-plus-extension</artifactId>
+                        <groupId>com.baomidou</groupId>
+                    </exclusion>
+                </exclusions>
+            </dependency>
+            <dependency>
+                <groupId>org.freemarker</groupId>
+                <artifactId>freemarker</artifactId>
+                <version>${freemarker.version}</version>
+            </dependency>
+            <!-- 默认模版 -->
+            <dependency>
+                <groupId>org.apache.velocity</groupId>
+                <artifactId>velocity-engine-core</artifactId>
+                <version>${velocity-engine-core.version}</version>
+            </dependency>
+
+            <!-- Redisson（Redis 布隆过滤器使用） -->
+            <dependency>
+                <groupId>org.redisson</groupId>
+                <artifactId>redisson</artifactId>
+                <version>${redisson.version}</version>
+            </dependency>
+
+            <!-- fastjson -->
+            <dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>fastjson</artifactId>
+                <version>${fastjson.version}</version>
+            </dependency>
+
+            <!-- commons 相关 -->
+            <dependency>
+                <groupId>org.apache.commons</groupId>
+                <artifactId>commons-lang3</artifactId>
+                <version>${commons-lang3.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>commons-collections</groupId>
+                <artifactId>commons-collections</artifactId>
+                <version>${commons-collections.verison}</version>
+            </dependency>
+            <dependency>
+                <groupId>commons-beanutils</groupId>
+                <artifactId>commons-beanutils</artifactId>
+                <version>${commons-beanutils.verison}</version>
+            </dependency>
+
+            <!-- httpclient -->
+            <dependency>
+                <groupId>org.apache.httpcomponents</groupId>
+                <artifactId>httpclient</artifactId>
+                <version>${httpclient.verison}</version>
+            </dependency>
+
+            <!-- hutool 工具类集合 -->
+            <dependency>
+                <groupId>cn.hutool</groupId>
+                <artifactId>hutool-all</artifactId>
+                <version>${hutool-all.version}</version>
+            </dependency>
+
+            <!-- Lombok -->
+            <dependency>
+                <groupId>org.projectlombok</groupId>
+                <artifactId>lombok</artifactId>
+                <version>${lombok.version}</version>
+            </dependency>
+
+            <!-- thymeleaf -->
+            <!--            <dependency>-->
+            <!--                <groupId>org.springframework.boot</groupId>-->
+            <!--                <artifactId>spring-boot-starter-thymeleaf</artifactId>-->
+            <!--            </dependency>-->
+
+            <!-- hotsearch-通用工具 -->
+            <dependency>
+                <groupId>com.loto.hotsearch</groupId>
+                <artifactId>hotsearch-common</artifactId>
+                <version>${hotsearch.version}</version>
+            </dependency>
+
+            <!-- hotsearch-持久化层 -->
+            <dependency>
+                <groupId>com.loto.hotsearch</groupId>
+                <artifactId>hotsearch-persistence</artifactId>
+                <version>${hotsearch.version}</version>
+            </dependency>
         </dependencies>
     </dependencyManagement>
 
     <build>
         <plugins>
+            <!-- java编译插件 -->
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
@@ -194,12 +213,11 @@
                 <directory>src/main/resources</directory>
             </resource>
         </resources>
-
     </build>
-
 
     <!--    <build>-->
     <!--        <plugins>-->
+    <!--            &lt;!&ndash; java编译插件 &ndash;&gt;-->
     <!--            <plugin>-->
     <!--                <groupId>org.apache.maven.plugins</groupId>-->
     <!--                <artifactId>maven-compiler-plugin</artifactId>-->
@@ -211,6 +229,7 @@
     <!--                </configuration>-->
     <!--            </plugin>-->
 
+    <!--            &lt;!&ndash; 资源文件拷贝插件 &ndash;&gt;-->
     <!--            <plugin>-->
     <!--                <groupId>org.apache.maven.plugins</groupId>-->
     <!--                <artifactId>maven-resources-plugin</artifactId>-->

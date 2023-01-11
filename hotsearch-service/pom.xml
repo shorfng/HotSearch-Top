@@ -1,28 +1,29 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-    <modelVersion>4.0.0</modelVersion>
     <parent>
-        <groupId>com.loto</groupId>
+        <groupId>com.loto.hotsearch</groupId>
         <artifactId>HotSearch-Top</artifactId>
         <version>1.0.0-SNAPSHOT</version>
     </parent>
 
     <artifactId>hotsearch-service</artifactId>
-    <packaging>jar</packaging>
+    <packaging>pom</packaging>
+    <modelVersion>4.0.0</modelVersion>
+    <description>服务端</description>
 
-    <name>hotsearch-service</name>
-    <url>http://maven.apache.org</url>
+    <!-- 子项目 -->
+    <modules>
+        <module>service-fetch-data-9081-tiktok</module>
+        <module>service-fetch-data-9082-bilibili</module>
+        <module>service-push-data-9091-wechat-official-account</module>
+        <module>service-push-data-9092-wechat-applet</module>
+        <module>service-fetch-data-9086-baidu</module>
+    </modules>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <!-- 设置编译版本 -->
+        <maven.compiler.source>11</maven.compiler.source>
+        <maven.compiler.target>11</maven.compiler.target>
     </properties>
-
-    <dependencies>
-        <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <version>3.8.1</version>
-            <scope>test</scope>
-        </dependency>
-    </dependencies>
 </project>

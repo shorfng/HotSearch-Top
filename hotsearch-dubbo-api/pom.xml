@@ -6,10 +6,10 @@
         <version>1.0.0-SNAPSHOT</version>
     </parent>
 
-    <artifactId>hotsearch-gateway</artifactId>
+    <artifactId>hotsearch-dubbo-api</artifactId>
     <modelVersion>4.0.0</modelVersion>
     <version>1.0.0-SNAPSHOT</version>
-    <description>hotsearch-网关</description>
+    <description>hotsearch-dubbo-api</description>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
