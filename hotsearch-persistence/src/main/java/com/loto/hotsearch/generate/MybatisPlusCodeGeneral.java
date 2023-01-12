@@ -19,15 +19,22 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * PageName：MybatisPlusCodeGenerate.java<p>
+ * PageName：MybatisPlusCodeGeneral.java<p>
  * Date：2022-12-31 16:49<p>
  * Function：MybatisPlus 逆向生成工具
  *
  * @author 蓝田_Loto
  */
 
-public class MybatisPlusCodeGenerate {
+public class MybatisPlusCodeGeneral {
     public static void main(String[] args) {
+        mybatisPlusCodeGeneral();
+    }
+
+    /**
+     * MybatisPlus 逆向生成工具
+     */
+    public static void mybatisPlusCodeGeneral() {
         // 作者
         String author = "蓝田_Loto";
         // 逆向生成的包的路径
